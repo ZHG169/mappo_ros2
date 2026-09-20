@@ -1,0 +1,30 @@
+# colcon output
+/build/
+/install/
+/log/
+
+# Original repository used as reference
+/reference/
+
+# External dependency cloned separately
+/src/px4_msgs/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Editors
+.vscode/
+.idea/
+
+# Temporary files
+*.swp
+*~
+.DS_Store

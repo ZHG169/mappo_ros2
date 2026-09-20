@@ -1,0 +1,36 @@
+services:
+  mappo_ros2:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      args:
+        USERNAME: ncrl
+        USER_UID: ${LOCAL_UID:-1000}
+        USER_GID: ${LOCAL_GID:-1000}
+
+    image: mappo-jazzy:env-test
+    container_name: mappo_ros2
+
+    # 讓 ROS2 DDS 直接使用主機網路
+    network_mode: host
+
+    # PyTorch 使用主機 IPC 與 NVIDIA GPU
+    ipc: host
+    gpus: all
+
+    environment:
+      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-0}
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+
+    # compose.yaml 位於 docker/，所以 .. 是 mappo_ros2
+    volumes:
+      - ..:/home/ncrl/mappo_ros2
+
+    working_dir: /home/ncrl/mappo_ros2
+
+    stdin_open: true
+    tty: true
+    init: true
+
+    command: bash
