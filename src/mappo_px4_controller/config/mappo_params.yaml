@@ -1,0 +1,23 @@
+mappo_px4_controller:
+  ros__parameters:
+    ndef: 4
+    k_max: 5
+    decision_period_sec: 1.0
+    setpoint_rate_hz: 20.0
+
+    origin_xy: [0.0, 0.0]
+    use_estimated: true
+    deterministic: true
+
+    velocity_min_mps: 3.0
+    velocity_max_mps: 5.0
+    checkpoint_path: ""
+
+    vehicle_namespaces:
+      - "/px4_1"
+      - "/px4_2"
+      - "/px4_3"
+      - "/px4_4"
+
+    # Safety default: the stage-six scaffold publishes no PX4 commands.
+    enable_px4_commands: false
